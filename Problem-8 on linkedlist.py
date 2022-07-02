@@ -94,13 +94,13 @@ def main():
     obj=Single_Linked_List()
     i=True
     while(i):
-        print("Press 1 to insert at begining\n"
-        "Press 2 to insert at ending\n"
-        "Press 3 to insert at any position\n"
-        "Press 4 to delete at begining\n"
-        "press 5 to delete at end\n"
-        "press 6 to delete at any position\n"
-        "Press any other number to exit")
+        print("For insertion at begining,press - 1\n"
+        "For insertion at end, press - 2\n"
+        "For insertion at given position, press - 3\n"
+        "For deletion at begining, press - 4\n"
+        "For deletion at end press, - 5\n"
+        "For deletion at given position press, - 6\n"
+        "For termination press any number")
         try:
             n = int(input("Enter your choice : "))
 
