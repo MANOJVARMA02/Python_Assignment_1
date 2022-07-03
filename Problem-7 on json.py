@@ -21,11 +21,11 @@ def splitting(genres_list):
 def repeatation(splitted_list,temp):
     dict={}
     for i in range(0,len(splitted_list)):
-        inc=0
+        inc=1
         for j in range(i+1,len(splitted_list)):
             if(splitted_list[i]==splitted_list[j] and splitted_list[i] not in dict):
                 inc+=1
-        if(inc!=0):
+        if(inc!=1):
             dict.update({splitted_list[i]:inc})
         elif(splitted_list[i] not in dict):
             dict.update({splitted_list[i]:1})
@@ -40,17 +40,17 @@ def main():
         url="https://raw.githubusercontent.com/prust/wikipedia-movie-data/master/movies.json"  #----Storing url
         response=urlopen(url)                                                                  #----storing the response of url
         movies_data=json.loads(response.read())                                                #----storing the json response
+        print("The genres which had most num of films from the year 2010 to 2018 are :")
+        for each_year in range(2010,2019):                                                         #----iterating from year 2010 to 2018
+            genres_list=genres_data(movies_data,each_year)                                         #---it is used to get all the years from 2010 to 2018                                    
+            splitted_list=splitting(genres_list)                                                   #---it is used to splitt the genre if film contains two genres
+            max_repeated_genre=repeatation(splitted_list,0)                                        #---used to find the count of max repeated genre for each year
+            print(max_repeated_genre,"in the year", each_year)
+            if(each_year==2018):
+                repeated_genres=repeatation(splitted_list,1)                                       #---used to get number of movies releaded in each genre during 2018
+                print("Number of films released in the year 2018 in different genres are : ")
+                print(repeated_genres)
     except:
-        print("Invalid url")
-    print("The genres which had most num of films from the year 2010 to 2018 are :")
-    for each_year in range(2010,2019):                                                         #----iterating from year 2010 to 2018
-        genres_list=genres_data(movies_data,each_year)                                         #---it is used to get all the years from 2010 to 2018                                    
-        splitted_list=splitting(genres_list)                                                   #---it is used to splitt the genre if film contains two genres
-        max_repeated_genre=repeatation(splitted_list,0)                                        #---used to find the count of max repeated genre for each year
-        print(max_repeated_genre,"in the year", each_year)
-        if(each_year==2018):
-            repeated_genres=repeatation(splitted_list,1)                                       #---used to get number of movies releaded in each genre during 2018
-            print("Number of films released in the year 2018 in different genres are : ")
-            print(repeated_genres)
+        print("Enter Invalid Url or check N/w connection")
 
 main()
